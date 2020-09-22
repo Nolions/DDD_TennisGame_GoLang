@@ -38,8 +38,25 @@ func TestFortyLove(t *testing.T) {
 func TestLoveFifteen(t *testing.T) {
 	game := TennisGame("A", "B")
 	game.point(1, game.Player2)
+	
 	result := game.Result()
 	assert.Equal(t, "Love - Fifteen", result)
+}
+
+func TestLoveThirty(t *testing.T) {
+	game := TennisGame("A", "B")
+	game.point(2, game.Player2)
+
+	result := game.Result()
+	assert.Equal(t, "Love - Thirty", result)
+}
+
+func TestLoveForty(t *testing.T) {
+	game := TennisGame("A", "B")
+	game.point(3, game.Player2)
+
+	result := game.Result()
+	assert.Equal(t, "Love - Forty", result)
 }
 
 func (g *Game) point(score int, player string) {
