@@ -9,7 +9,7 @@ type Game struct {
 	Player2Score int
 }
 
-func init()  {
+func init() {
 	scoreCodes = make(map[int]string)
 	scoreCodes[0] = "Love"
 	scoreCodes[1] = "Fifteen"
@@ -31,8 +31,8 @@ func TennisGame(player1, player2 string) *Game {
 func (g *Game) Result() string {
 	result := "Love - All"
 
-	if g.Player1Score > 0 {
-		result = scoreCodes[g.Player1Score] + " - Love"
+	if g.Player1Score > 0 || g.Player2Score > 0 {
+		result = scoreCodes[g.Player1Score] + " - " + scoreCodes[g.Player2Score]
 	}
 
 	return result
@@ -40,4 +40,8 @@ func (g *Game) Result() string {
 
 func (g *Game) pointPlayer1() {
 	g.Player1Score++
+}
+
+func (g *Game) pointPlayer2() {
+	g.Player2Score++
 }
