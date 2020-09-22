@@ -19,6 +19,9 @@ func init() {
 	scoreCodes[3] = "Forty"
 }
 
+/*
+	初始化&建立一個Game實體
+*/
 func TennisGame(player1, player2 string) *Game {
 	game := &Game{
 		Player1:      player1,
@@ -30,6 +33,9 @@ func TennisGame(player1, player2 string) *Game {
 	return game
 }
 
+/*
+	取得目錢比較狀況
+*/
 func (g *Game) Result() string {
 	result := "Love - All"
 
@@ -54,6 +60,7 @@ func (g *Game) Result() string {
 	return result
 }
 
+// 比分是否為平手
 func isTied(score1, score2 int) bool {
 	if score1 == score2 {
 		return true
@@ -62,6 +69,7 @@ func isTied(score1, score2 int) bool {
 	return false
 }
 
+// 是否Advantage狀況
 func isAdvantage(score1, score2 int) bool {
 	if math.Abs(float64(score1)-float64(score2)) == 1 {
 		return true
@@ -70,6 +78,7 @@ func isAdvantage(score1, score2 int) bool {
 	return false
 }
 
+// 目前誰占優勢
 func (g *Game) whoAdvantage() string {
 	if g.Player1Score > g.Player2Score {
 		return g.Player1
@@ -78,6 +87,7 @@ func (g *Game) whoAdvantage() string {
 	return g.Player2
 }
 
+// 目前雙方比方是否皆為大於等於Forty
 func (g *Game) isScoreGreaterEqualForty() bool {
 	if g.Player1Score >= 3 && g.Player2Score >= 3 {
 		return true
@@ -86,10 +96,12 @@ func (g *Game) isScoreGreaterEqualForty() bool {
 	return false
 }
 
+// Player1 得分
 func (g *Game) pointPlayer1() {
 	g.Player1Score++
 }
 
+// Player2 得分
 func (g *Game) pointPlayer2() {
 	g.Player2Score++
 }
