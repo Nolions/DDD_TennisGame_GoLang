@@ -33,30 +33,57 @@ func TennisGame(player1, player2 string) *Game {
 func (g *Game) Result() string {
 	result := "Love - All"
 
-	if g.Player1Score == g.Player2Score {
+	if isTied(g.Player1Score, g.Player2Score) {
 		if g.Player1Score >= 3 {
 			result = "Deuce"
 		} else {
 			result = scoreCodes[g.Player1Score] + " All"
 		}
-	} else if g.Player1Score > 0 || g.Player2Score > 0 {
-		if g.Player1Score >= 3 && g.Player2Score >= 3 {
-			player := g.Player1
-			if g.Player1Score < g.Player2Score {
-				player = g.Player2
-			}
+	} else if g.isScoreGreaterEqualForty() {
+		advantagePlayer := g.whoAdvantage()
 
-			if math.Abs(float64(g.Player1Score) - float64(g.Player2Score)) == 1 {
-				result = "Advantage " + player
-			} else {
-				result = "Win " + player
-			}
+		if isAdvantage(g.Player1Score, g.Player2Score) {
+			result = "Advantage " + advantagePlayer
 		} else {
-			result = scoreCodes[g.Player1Score] + " - " + scoreCodes[g.Player2Score]
+			result = "Win " + advantagePlayer
 		}
+	} else {
+		result = scoreCodes[g.Player1Score] + " - " + scoreCodes[g.Player2Score]
 	}
 
 	return result
+}
+
+func isTied(score1, score2 int) bool {
+	if score1 == score2 {
+		return true
+	}
+
+	return false
+}
+
+func isAdvantage(score1, score2 int) bool {
+	if math.Abs(float64(score1)-float64(score2)) == 1 {
+		return true
+	}
+
+	return false
+}
+
+func (g *Game) whoAdvantage() string {
+	if g.Player1Score > g.Player2Score {
+		return g.Player1
+	}
+
+	return g.Player2
+}
+
+func (g *Game) isScoreGreaterEqualForty() bool {
+	if g.Player1Score >= 3 && g.Player2Score >= 3 {
+		return true
+	}
+
+	return false
 }
 
 func (g *Game) pointPlayer1() {
