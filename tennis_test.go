@@ -1,11 +1,10 @@
 package main
 
 import (
+	"github.com/stretchr/testify/assert"
 	"math/rand"
 	"testing"
 	"time"
-
-	"github.com/stretchr/testify/assert"
 )
 
 func TestLoveAll(t *testing.T) {
@@ -109,6 +108,24 @@ func TestAdvantagePlayer1(t *testing.T) {
 
 	result := game.Result()
 	assert.Equal(t, "Advantage A", result)
+}
+
+func TestWinPlayer1(t *testing.T) {
+	game := TennisGame("A", "B")
+	game.point(5, game.Player1)
+	game.point(3, game.Player2)
+
+	result := game.Result()
+	assert.Equal(t, "Win A", result)
+}
+
+func TestAdvantagePlayer2(t *testing.T) {
+	game := TennisGame("A", "B")
+	game.point(3, game.Player1)
+	game.point(4, game.Player2)
+
+	result := game.Result()
+	assert.Equal(t, "Advantage B", result)
 }
 
 func (g *Game) point(score int, player string) {
