@@ -128,6 +128,15 @@ func TestAdvantagePlayer2(t *testing.T) {
 	assert.Equal(t, "Advantage B", result)
 }
 
+func TestWinPlayer2(t *testing.T) {
+	game := TennisGame("A", "B")
+	game.point(3, game.Player1)
+	game.point(5, game.Player2)
+
+	result := game.Result()
+	assert.Equal(t, "Win B", result)
+}
+
 func (g *Game) point(score int, player string) {
 	for i := 0; i < score; i++ {
 		if player == g.Player1 {
