@@ -1,9 +1,10 @@
 package main
 
 import (
-	"testing"
-
 	"github.com/stretchr/testify/assert"
+	"math/rand"
+	"testing"
+	"time"
 )
 
 func TestLoveAll(t *testing.T) {
@@ -75,6 +76,29 @@ func TestThirtyAll(t *testing.T) {
 
 	result := game.Result()
 	assert.Equal(t, "Thirty All", result)
+}
+
+func TestDeuce(t *testing.T) {
+	game := TennisGame("A", "B")
+	game.point(3, game.Player1)
+	game.point(3, game.Player2)
+
+	result := game.Result()
+	assert.Equal(t, "Deuce", result)
+}
+
+func TestDeuceScoreOver3(t *testing.T) {
+	rand.Seed(time.Now().UnixNano())
+	max := 99
+	min := 4
+	score := rand.Intn(max - min + 1 + min)
+
+	game := TennisGame("A", "B")
+	game.point(score, game.Player1)
+	game.point(score, game.Player2)
+
+	result := game.Result()
+	assert.Equal(t, "Deuce", result)
 }
 
 func (g *Game) point(score int, player string) {
