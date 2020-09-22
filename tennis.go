@@ -20,6 +20,11 @@ func TennisGame(player1, player2 string) *Game {
 
 func (g *Game) Result() string {
 	result := "Love - All"
+
+	if g.Player1Score == 1 {
+		result = "Fifteen - Love"
+	}
+
 	return result
 }
 
