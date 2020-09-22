@@ -9,7 +9,7 @@ import (
 func TestLoveAll(t *testing.T) {
 	game := TennisGame("A", "B")
 	result := game.Result()
-	assert.Equal(t, "Love - All", result)
+	assert.Equal(t, "Love All", result)
 }
 
 func TestFifteenLove(t *testing.T) {
@@ -65,7 +65,16 @@ func TestFifteenAll(t *testing.T) {
 	game.point(1, game.Player2)
 
 	result := game.Result()
-	assert.Equal(t, "Fifteen - All", result)
+	assert.Equal(t, "Fifteen All", result)
+}
+
+func TestThirtyAll(t *testing.T) {
+	game := TennisGame("A", "B")
+	game.point(2, game.Player1)
+	game.point(2, game.Player2)
+
+	result := game.Result()
+	assert.Equal(t, "Thirty All", result)
 }
 
 func (g *Game) point(score int, player string) {
