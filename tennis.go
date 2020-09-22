@@ -32,7 +32,12 @@ func (g *Game) Result() string {
 	result := "Love - All"
 
 	if g.Player1Score == g.Player2Score {
-		result = scoreCodes[g.Player1Score] + " - All"
+		if g.Player1Score >= 3 {
+			result = "Deuce"
+		} else {
+			result = scoreCodes[g.Player1Score] + " All"
+		}
+
 	} else if g.Player1Score > 0 || g.Player2Score > 0 {
 		result = scoreCodes[g.Player1Score] + " - " + scoreCodes[g.Player2Score]
 	}
