@@ -22,3 +22,7 @@ func (g *Game) Result() string {
 	result := "Love - All"
 	return result
 }
+
+func (g *Game) pointPlayer1() {
+	g.Player1Score++
+}
