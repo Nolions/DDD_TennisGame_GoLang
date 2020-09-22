@@ -19,6 +19,6 @@ func TennisGame(player1, player2 string) *Game {
 }
 
 func (g *Game) Result() string {
-	result := "LoveAll"
+	result := "Love - All"
 	return result
 }

@@ -9,5 +9,5 @@ import (
 func TestLoveAll(t *testing.T) {
 	game := TennisGame("A", "B")
 	result := game.Result()
-	assert.Equal(t, "LoveAll", result)
+	assert.Equal(t, "Love - All", result)
 }
