@@ -11,3 +11,10 @@ func TestLoveAll(t *testing.T) {
 	result := game.Result()
 	assert.Equal(t, "Love - All", result)
 }
+
+func TestFifteenLove(t *testing.T) {
+	game := TennisGame("A", "B")
+	game.pointPlayer1()
+	result := game.Result()
+	assert.Equal(t, "Fifteen - Love", result)
+}
