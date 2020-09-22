@@ -1,5 +1,7 @@
 package main
 
+import "math"
+
 var scoreCodes map[int]string
 
 type Game struct {
@@ -39,10 +41,16 @@ func (g *Game) Result() string {
 		}
 	} else if g.Player1Score > 0 || g.Player2Score > 0 {
 		if g.Player1Score >= 3 && g.Player2Score >= 3 {
-			if g.Player1Score - g.Player2Score == 1 {
-				result = "Advantage " + g.Player1
+			player := g.Player1
+			if g.Player1Score < g.Player2Score {
+				player = g.Player2
 			}
 
+			if math.Abs(float64(g.Player1Score) - float64(g.Player2Score)) == 1 {
+				result = "Advantage " + player
+			} else {
+				result = "Win " + player
+			}
 		} else {
 			result = scoreCodes[g.Player1Score] + " - " + scoreCodes[g.Player2Score]
 		}
