@@ -25,6 +25,8 @@ func (g *Game) Result() string {
 		result = "Fifteen - Love"
 	} else if g.Player1Score == 2 {
 		result = "Thirty - Love"
+	} else if g.Player1Score == 3 {
+		result = "Forty - Love"
 	}
 
 	return result
